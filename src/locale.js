@@ -138,7 +138,7 @@ export default {
         success: "成功",
         warning: "警告",
         error: "错误",
-        content: "内容",
+        content: "内容（支持HTML）",
         "show-desc": "是否显示描述信息",
         ghost: "幽灵属性",
         long: "按钮的长度为 100%",

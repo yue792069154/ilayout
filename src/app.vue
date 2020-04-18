@@ -39,9 +39,7 @@
 
                             <div :class="[prefixCls + '-pannel-main-center-toolbar-r']">
                                 <ul>
-                                    <li>
-                                        运行
-                                    </li>
+                                    
                                     <li>
                                         <router-link to="/">
                                             设计
@@ -53,7 +51,12 @@
                                         </router-link>
                                     </li>
                                     <li>
-                                        <router-link to="code">
+                                        <router-link to="/">
+                                            清空
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link to="json">
                                             数据
                                         </router-link>
                                     </li>

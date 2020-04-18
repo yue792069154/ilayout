@@ -204,20 +204,21 @@ body {
                             &-bottom-tools {
                                 position: absolute;
                                 right: 0;
-                                width: 56px;
+                                width: 22px;
                                 text-align: center;
-                                height: 26px;
-                                line-height: 26px;
-                                background: #409eff;
+                                height: 22px;
+                                line-height: 20px;
+                                background: rgb(245, 122, 120);
                                 z-index: 9;
                                 color: #fff;
                                 border-bottom-left-radius: 3px;
                                 top: 0px;
+                            
 
 
 
                                 i {
-                                    font-size: 2rem;
+                                    font-size: 1.8rem;
                                     cursor: pointer;
                                 }
                             }
@@ -237,16 +238,27 @@ body {
                             visibility: visible !important;
                         }
 
-                        .iform-item:hover {
+                        .iform-item:hover:not(.iform-item-active)  {
                             background: #e7f2fd;
                             border: 1px dashed #409EFF;
                         }
 
-                        .iform-item-layout:hover {
+                        .iform-item-active {
+                            background: #e7f2fd;
+                            border: 1px solid #409EFF;
+                        }
+
+                        .iform-item-layout:hover:not(.iform-item-layout-active) {
                             background: #FFFAF0;
                             border: 1px dashed #FFC125;
                         }
 
+                        .iform-item-layout-active {
+                            background: #FFFAF0;
+                            border: 1px solid #FFC125;
+                        }
+
+                        
 
                         .iform-item-move {
                             background: #e7f2fd;
@@ -256,16 +268,6 @@ body {
                             min-height: 40px;
                             font-size: 0px;
                             width: 100%;
-                        }
-
-                        .iform-item-active {
-                            background: #e7f2fd;
-                            border: 1px dashed #409EFF;
-                        }
-
-                        .iform-item-layout-active {
-                            background: #FFFAF0;
-                            border: 1px dashed #FFC125;
                         }
 
                     }
@@ -295,6 +297,7 @@ body {
                         background-color: #F2F5F7;
                         padding: 10px;
                     }
+
 
                     .iform-design-drag {
                         width: 100%;

@@ -58,7 +58,9 @@ var store = new Vuex.Store({
     state: {
         ui: "iview",
         componentSelect: {
-            componentList: []
+            componentList:[
+                
+              ]
         },
         componentActive: {},
         sckjComponentList: {}

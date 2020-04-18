@@ -21,15 +21,12 @@ export default {
 
             },
             jsonViewerCopyable: {
-                copyText: '',
-                copiedText: ''
+                copyText: '复制',
+                copiedText: '复制成功'
             }
         };
     },
     mounted() {
-
-        //this.jsonViewerCopyable.copyText = this.$key('copyText');
-        //this.jsonViewerCopyable.copiedText = this.$key('copiedText');
 
         this.componentList = this.$store.state.componentSelect;
 

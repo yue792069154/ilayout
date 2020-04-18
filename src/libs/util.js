@@ -4,7 +4,7 @@ let util = {
     }
 };
 util.title = function (title) {
-    title = title ? title: 'iLayout';
+    title = title ? title : 'iLayout';
     window.document.title = title;
 };
 

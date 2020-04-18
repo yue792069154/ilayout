@@ -22,11 +22,11 @@ class IvuCollapse extends Ivu {
 
 
             panelList: [{
-                label: "折叠面板1",
+                label: '折叠面板1',
                 value: Util.getRandomCode(),
                 componentList: []
             }, {
-                label: "折叠面板2",
+                label: '折叠面板2',
                 value: Util.getRandomCode(),
                 componentList: []
             }]
@@ -38,14 +38,14 @@ class IvuCollapse extends Ivu {
             groupCode: 'basicAttr',
             children: {
                 accordion: {
-                    type: "Boolean"
+                    type: 'Boolean'
                 },
                 simple: {
-                    type: "Boolean"
+                    type: 'Boolean'
                 },
                 dataType: {
-                    type: "StaticData",
-                    field: "panelList"
+                    type: 'StaticData',
+                    field: 'panelList'
                 },
             }
         }];

@@ -15,19 +15,23 @@ class IvuBlock extends Ivu {
         this.props = {
 
             componentList: [],
+            height:'50',
             padding: '0',
             borderWidth: '1',
-            borderStyle: '',
-            borderColor: '',
+            borderStyle: 'dashed',
+            borderColor: 'rgba(170, 170, 170, 0.7)',
             backgroundColor: '',
             borderRadius: '0',
             content: ''
-        };
+        };  
 
         this.groupList = [{
             groupName: Vue.$t('basicAttr'),
             groupCode: 'basicAttr',
             children: {
+                height: {
+                    type: 'Number'
+                },
                 padding: {
                     type: 'Number'
                 },

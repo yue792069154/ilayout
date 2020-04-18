@@ -1,12 +1,11 @@
 import Ivu from './ivu';
+import Util from '../../libs/util';
 
 class IvuTabs extends Ivu {
 
     constructor(Vue) {
 
         super();
-
-        var self = this;
 
         this.type = 'IvuTabs';
 
@@ -16,22 +15,22 @@ class IvuTabs extends Ivu {
 
         this.props = {
 
-            type: "card",
-            size: "large",
+            type: 'card',
+            size: 'large',
             closable: false,
             animated: true,
 
             tabs: [{
-                label: "标签1",
-                value: 1,
+                label: '标签1',
+                value: Util.getRandomCode(),
                 componentList: []
             }, {
-                label: "标签2",
-                value: 2,
+                label: '标签2',
+                value: Util.getRandomCode(),
                 componentList: []
             }, {
-                label: "标签3",
-                value: 3,
+                label: '标签3',
+                value: Util.getRandomCode(),
                 componentList: []
             }]
         };
@@ -55,24 +54,24 @@ class IvuTabs extends Ivu {
                     }]
                 },
                 type: {
-                    type: "Array",
+                    type: 'Array',
                     optionList: [{
                         label: Vue.$t('line'),
-                        value: "line"
+                        value: 'line'
                     }, {
                         label: Vue.$t('card'),
-                        value: "card"
+                        value: 'card'
                     }]
                 },
                 tabs: {
-                    type: "StaticData",
-                    field: "tabs"
+                    type: 'StaticData',
+                    field: 'tabs'
                 },
                 closable: {
-                    type: "Boolean"
+                    type: 'Boolean'
                 },
                 animated: {
-                    type: "Boolean"
+                    type: 'Boolean'
                 }
             }
         }];

@@ -1,12 +1,16 @@
 <script>
   const prefixCls = 'iform';
 
-  import Vue from 'vue';
   import draggable from "vuedraggable";
   import _ from "lodash";
   import Components from "../../components/index";
   import Render from "../../components/render";
-  import Util from '../../libs/util';
+
+  const formItemDefaultClass = prefixCls + '-item';
+  const formItemActiveClass = prefixCls + '-item' + ' ' + prefixCls + '-item-active';
+
+  const formItemDefaultLayoutClass = prefixCls + '-item-layout';
+  const formItemActiveLayoutClass = prefixCls + '-item-layout' + ' ' + prefixCls + '-item-layout-active';
 
   export default {
     name: 'IFormItemCreate',
@@ -37,28 +41,79 @@
     methods: {
       renderFormItem(h, component) {
 
+        var vm = this;
 
-        const formItemDefaultClass = prefixCls + '-item';
-        const formItemActiveClass = prefixCls + '-item' + ' ' + prefixCls + '-item-active';
-
-
-        const formItemDefaultLayoutClass = prefixCls + '-item-layout';
-        const formItemActiveLayoutClass = prefixCls + '-item-layout' + ' ' + prefixCls + '-item-layout-active';
-
+        this.$nextTick(function () {
+          if (vm.$refs[component.key].innerHTML != "") return false;
+          Comjs.use(component.comsId, function (View) {
+            var view = new View();
+            vm.$refs[component.key].innerHTML = "";
+            view.appendTo(vm.$refs[component.key]);
+          });
+        });
 
         if (component.layout) {
 
           return h("div", {
             class: component.active ? formItemActiveLayoutClass : formItemDefaultLayoutClass,
             key: component.key
-          }, [Render[component.type](h, component.props, this)]);
+          }, [Render[component.type](h, component.props, this), this.renderTools(h, component)]);
 
         } else {
 
           return h("div", {
+            class: component.active ? formItemActiveClass : formItemDefaultClass
+
+          }, [h("div", {
             ref: component.key
-          });
-          
+          }), this.renderTools(h, component)]);
+
+        }
+      },
+      renderTools: function (h, component) {
+
+        var vm = this;
+
+        if (component.active) {
+          return h("div", {
+            class: prefixCls + '-item-bottom-tools'
+          }, [
+            h("Icon", {
+              props: {
+                type: "ios-trash-outline"
+              },
+              nativeOn: {
+                click: (e) => {
+
+                  e.stopPropagation();
+
+                  var index = _.findIndex(vm.componentList, function (item) {
+                    return item.key == component.key;
+                  });
+
+                  vm.componentList.splice(index, 1);
+
+                  _.forEach(vm.componentList, function (component) {
+                    component.active = false;
+                  });
+
+                  if (vm.componentList.length > index) {
+                    vm.componentList[index].active = true;
+                    vm.$emit('onChoose', vm.componentList[index]);
+
+                  } else if (vm.componentList.length == index && vm.componentList.length > 0) {
+                    vm.componentList[index - 1].active = true;
+                    vm.$emit('onChoose', vm.componentList[index - 1]);
+
+                  } else {
+                    vm.$emit('onChoose', {});
+                  }
+
+
+                }
+              }
+            })
+          ])
         }
       }
     },
@@ -96,13 +151,6 @@
             vm.componentList.splice(e.newIndex, 0, component);
 
             vm.$emit('onAdd', component);
-
-            vm.$nextTick(function () {
-              Comjs.use(component.comsId, function (View) {
-                var view = new View();
-                view.appendTo(vm.$refs[component.key]);
-              });
-            });
 
           },
           update: function (e) {

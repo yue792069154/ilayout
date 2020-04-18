@@ -20,54 +20,47 @@
 
             var vm = this;
 
-            return h("div", {
+            return h("IFormItemCreate", {
                 props: {
-
+                    componentList: this.componentSelect.componentList,
+                    className: `${prefixCls}-design-form`
                 },
-                class: `${prefixCls}-design-form`
-            }, [
-                h("IFormItemCreate", {
-                    props: {
-                        componentList: this.componentSelect.componentList,
-                        className: `${prefixCls}-design-form`
+                on: {
+                    onAdd(component) {
+
+                        vm.$store.commit({
+                            type: "setComponentActive",
+                            componentActive: component
+                        });
+
+
+                        vm.$store.commit({
+                            type: "setComponentSelect",
+                            componentSelect: vm.componentSelect
+                        });
+
                     },
-                    on: {
-                        onAdd(component) {
+                    onUpdate(component) {
 
-                            vm.$store.commit({
-                                type: "setComponentActive",
-                                componentActive: component
-                            });
-
-
-                            vm.$store.commit({
-                                type: "setComponentSelect",
-                                componentSelect: vm.componentSelect
-                            });
-
-                        },
-                        onUpdate(component) {
-
-                            vm.$store.commit({
-                                type: "setComponentActive",
-                                componentActive: component
-                            });
+                        vm.$store.commit({
+                            type: "setComponentActive",
+                            componentActive: component
+                        });
 
 
-                            vm.$store.commit({
-                                type: "setComponentSelect",
-                                componentSelect: vm.componentSelect
-                            });
-                        },
-                        onChoose(component) {
-                            vm.$store.commit({
-                                type: "setComponentActive",
-                                componentActive: component
-                            });
-                        }
+                        vm.$store.commit({
+                            type: "setComponentSelect",
+                            componentSelect: vm.componentSelect
+                        });
+                    },
+                    onChoose(component) {
+                        vm.$store.commit({
+                            type: "setComponentActive",
+                            componentActive: component
+                        });
                     }
-                })
-            ]);
+                }
+            });
 
         },
         components: {

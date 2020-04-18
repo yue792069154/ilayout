@@ -1,15 +1,16 @@
-import Iview from './views/iview/index.vue';
-import IFormCode from './views/iview/iform-code.vue';
+import Index from './views/iview/index.vue';
+import IFormItemJson from './views/iview/iform-item-json.vue';
+import Preview from './views/iview/preview.vue';
 
 const routers = [{
     path: '/',
-    component: Iview
+    component: Index
 }, {
-    path: '/code',
-    component: IFormCode
+    path: '/json',
+    component: IFormItemJson
 }, {
-    path: '/iview',
-    component: Iview
+    path: '/preview',
+    component: Preview
 }];
 
 export default routers;

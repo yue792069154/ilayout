@@ -1,4 +1,4 @@
-import _ from "lodash";
+import _ from 'lodash';
 
 export default {
     IvuText: (h, props) => {
@@ -10,18 +10,18 @@ export default {
         });
     },
     IvuTextarea: (h, props) => {
-        return h("Input", {
+        return h('Input', {
             props: props,
             style: {
-                width: props.width + "%"
+                width: props.width + '%'
             }
         });
     },
     IvuAlert: (h, props) => {
-        return h("Alert", {
+        return h('Alert', {
             props: props
-        }, [props.title, h("span", {
-            slot: "desc"
+        }, [props.title, h('span', {
+            slot: 'desc'
         }, [props.desc])]);
     },
     IvuTextIcon: (h, props) => {
@@ -41,22 +41,22 @@ export default {
         });
     },
     IvuDatePicker: (h, props) => {
-        return h("DatePicker", {
+        return h('DatePicker', {
             props: props,
             style: {
-                width: props.width + "%"
+                width: props.width + '%'
             }
         });
     },
     IvuSelect: (h, props) => {
-        return h("Select", {
+        return h('Select', {
             props: props
         }, (function () {
 
             var optionList = [];
 
             _.mapKeys(props.optionList, (item) => {
-                optionList.push(h("Option", {
+                optionList.push(h('Option', {
                     props: {
                         label: item.label,
                         value: item.value,
@@ -71,26 +71,26 @@ export default {
         })());
     },
     IvuRate: (h, props) => {
-        return h("Rate", {
+        return h('Rate', {
             props: props
         });
     },
     IvuButton: (h, props) => {
-        return h("Button", {
+        return h('Button', {
             props: props
         }, [props.buttonText]);
     },
     IvuDivider: (h, props) => {
-        return h("Divider", {
+        return h('Divider', {
             props: props
         }, [props.title]);
     },
     IvuCard: (h, props, vm) => {
 
-        return h("Card", {
+        return h('Card', {
             props: props
         }, [
-            h("IFormItemCreate", {
+            h('IFormItemCreate', {
                 props: {
                     componentList: props.componentList,
                     className: `iform-layout-form`
@@ -114,12 +114,12 @@ export default {
         let tabList = [];
 
         _.mapKeys(props.tabs, (tab) => {
-            tabList.push(h("TabPane", {
+            tabList.push(h('TabPane', {
                 props: {
                     label: tab.label,
                     name: tab.value,
                 }
-            }, [h("IFormItemCreate", {
+            }, [h('IFormItemCreate', {
                 props: {
                     componentList: tab.componentList,
                     className: `iform-layout-form`
@@ -138,7 +138,7 @@ export default {
             })]));
         });
 
-        return h("Tabs", {
+        return h('Tabs', {
             props: props
         }, tabList);
     },
@@ -147,16 +147,16 @@ export default {
         let panelList = [];
 
         _.mapKeys(props.panelList, (panel) => {
-            panelList.push(h("Panel", {
+            panelList.push(h('Panel', {
                 props: {
                     name: panel.value,
                 }
-            }, [panel.label, [h("IFormItemCreate", {
+            }, [panel.label, [h('IFormItemCreate', {
                 props: {
                     componentList: panel.componentList,
                     className: `iform-layout-form`
                 },
-                slot: "content",
+                slot: 'content',
                 on: {
                     onAdd(component) {
                         vm.$emit('onAdd', component);
@@ -171,7 +171,7 @@ export default {
             })]]));
         });
 
-        return h("Collapse", {
+        return h('Collapse', {
             props: props
         }, panelList);
     },
@@ -180,11 +180,11 @@ export default {
         let colList = [];
 
         _.mapKeys(props.colList, (col) => {
-            colList.push(h("iCol", {
+            colList.push(h('iCol', {
                 props: {
                     span: col.label
                 }
-            }, [h("IFormItemCreate", {
+            }, [h('IFormItemCreate', {
                 props: {
                     componentList: col.componentList,
                     className: `iform-layout-form`
@@ -203,24 +203,27 @@ export default {
             })]));
         });
 
-        return h("Row", {
+        return h('Row', {
             props: props
         }, colList);
     },
     IvuBlock: (h, props, vm) => {
-        return h("div", {
+        return h('div', {
             style: {
-                padding: props.padding + "px",
-                borderWidth: props.borderWidth + "px",
+                height: props.height + 'px',
+                padding: props.padding + 'px',
+                borderWidth: props.borderWidth + 'px',
                 borderStyle: props.borderStyle,
                 borderColor: props.borderColor,
                 backgroundColor: props.backgroundColor,
-                borderRadius: props.borderRadius + "px"
-            }
-        }, [props.content, [h("IFormItemCreate", {
+                borderRadius: props.borderRadius + 'px'
+            },
+            domProps:{
+                innerHTML:props.content
+            },
+        }, [[h('IFormItemCreate', {
             props: {
-                componentList: props.componentList,
-                className: `iform-layout-form`
+                componentList: props.componentList
             },
             on: {
                 onAdd(component) {
@@ -237,21 +240,6 @@ export default {
     },
     IvuSwitch: (h, props) => {
         return h('iSwitch', {
-            props: props
-        });
-    },
-    VanButton: (h, props) => {
-        return h('van-button', {
-            props: props
-        });
-    },
-    VanPassword: (h, props) => {
-        return h('van-password-input', {
-            props: props
-        });
-    },
-    VanPicker: (h, props) => {
-        return h("van-picker", {
             props: props
         });
     }

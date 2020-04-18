@@ -5,7 +5,7 @@ class Sckj {
     constructor() {
 
         this.ui = 'sckj';
-
+        this.active = true;
         this.key = Util.getRandomCode();
 
     }
